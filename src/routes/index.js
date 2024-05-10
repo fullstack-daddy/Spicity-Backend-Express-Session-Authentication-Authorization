@@ -171,13 +171,13 @@ app.post("/signup", async (req, res) => {
   }
 });
 //route for user dashboard
-app.get("/dashboard", (req, res) => {
-  if (req.session.user && req.cookies.user_sid) {
-    res.sendFile(__dirname + "/dashboard");
-  } else {
-    res.redirect("/login");
-  }
-});
+// app.get("/dashboard", (req, res) => {
+//   if (req.session.user && req.cookies.user_sid) {
+//     res.sendFile(__dirname + "/dashboard");
+//   } else {
+//     res.redirect("/login");
+//   }
+// });
 
 app.get("/logout", (req, res) => {
   // Destroy the session
@@ -187,7 +187,7 @@ app.get("/logout", (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
     } else {
       // Redirect the user to the login page after logout
-      res.redirect("/login");
+      res.json("successfully logged out");
     }
   });
 });

@@ -13,6 +13,12 @@ const userSchema = new mongoose.Schema(
       required: "Your lastname is required",
       max: 25,
     },
+    username: {
+      type: String,
+      required: "Enter a unique username",
+      unique: true,
+      max: 25,
+    },
     email: {
       type: String,
       required: "Your email is required",
@@ -23,7 +29,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: "Your password is required",
-      select: false,
+      select: true,
       max: 25,
     },
     role: {
@@ -55,6 +61,4 @@ userSchema.pre("save", function (next) {
   });
 });
 
-const userModel = mongoose.model('user', userSchema)
-
-export default userModel;
+export default mongoose.model("users", userSchema);

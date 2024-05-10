@@ -179,4 +179,17 @@ app.get("/dashboard", (req, res) => {
   }
 });
 
+app.get("/logout", (req, res) => {
+  // Destroy the session
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error during logout:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    } else {
+      // Redirect the user to the login page after logout
+      res.redirect("/login");
+    }
+  });
+});
+
 export default app;
